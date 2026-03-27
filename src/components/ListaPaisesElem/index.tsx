@@ -1,5 +1,6 @@
 
 
+import Link from "next/link";
 import "./style.css";
 import { Pais } from "@/types/Pais";
 
@@ -10,18 +11,12 @@ interface ListaPaisesElemProps {
 export const ListaPaisesElem =(props: ListaPaisesElemProps)=>{
   const pais = props.pais
   return (
-    <div className="PaisList">
-        {pais.capital}
-    </div>
-        
+      <Link href={`/country/${pais.name.official}`} className="Elem">
+      <h2>Nombre comun: {pais.name.common}</h2>
+      {pais.flags.png && <img className="image" src={pais.flags.png}/>}
+      <h3>Poblacion: {pais.population}</h3>
+      </Link>
   )
 }
 
-// pais[flags]
-// pais.flags
-//  Object.keys(pais.languages).map( key => 
-//    <p>
-//        {pais.languages[key]}
-//    </p>
-//  ) // eng, esp
 

@@ -10,9 +10,8 @@ export const getPaisesByName = async(name: string)=>{
     const paises:Pais[] = response.data
     return paises;
 }
-export const getCocktailByCode = async(code: string)=>{
-    const response = await api.get(`/alpha/${code}`)
-    console.log(response)
+export const getPaisesAll = async(name: string)=>{
+    const response = await api.get(`/all?fields=capital,subregion,name,currencies,languages,flags,population`)
     const paises:Pais[] = response.data
-    return paises.at(0);
+    return paises;
 }

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import './style.css'
 import { Pais } from "@/types/Pais";
-import { getPaisesByName } from "@/elAxios/cocktails";
+import { getPaisesAll, getPaisesByName } from "@/elAxios/paises";
 import { ListaPaises } from "@/components/ListaPaises";
 const Page = () => {
 
@@ -19,14 +19,26 @@ const Page = () => {
     if(name != ''){
       setLoading(true)
       getPaisesByName(String(name)).then((res)=>{
-          setLoading(false)
-          setPaises(res);
+        setLoading(false)
+        setPaises(res);
       }).catch((e:AxiosError)=>{
-          setLoading(false)
-          setError(true)
+        setLoading(false)
+        setError(true)
       }).finally(()=>{
 
       })
+    }else if(paises==null){
+      setLoading(true)
+      getPaisesAll(String(name)).then((res)=>{
+        setLoading(false)
+        setPaises(res);
+      }).catch((e:AxiosError)=>{
+        setLoading(false)
+        setError(true)
+      }).finally(()=>{
+
+      })
+
     }
   },[FinalName])
 

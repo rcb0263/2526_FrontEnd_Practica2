@@ -1,7 +1,6 @@
+//capital,subregion,name,currencies,languages,flags
 export type Pais = {
-    tld: string[],
     capital: string[],
-    region: string,
     subregion: string,
 
     population: number
@@ -10,11 +9,12 @@ export type Pais = {
       official: string
     },
     currencies: {
-      PEN: {
-        name: string
-      }
-    },
-    languages: unknown,
+        [key: string]: {
+            name: string;
+            symbol: string;
+        };
+    }
+    languages: {[key: string]: string},
 
     flags: {
       png: string,

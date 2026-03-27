@@ -16,7 +16,7 @@ export const ListaPaises =(props: ListaPaisesProps)=>{
         {paises.map((e)=>{
             return (
             <ListaPaisesElem 
-            key={e.tld[0]} 
+            key={e.name.official} 
             pais={e}
             />
             )})}
