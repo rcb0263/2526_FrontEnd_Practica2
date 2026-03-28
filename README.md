@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
+paso 1:
+npm install
+paso 2:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+paso 3:
+abrir la url que te viene por consola, viene en el modo Local: http://localhost:...
+suele ser: http://localhost:3000/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tipos:
+-Pais
+ tiene los campos capital, subregion, population, name:{common, official}, currencies, languages, flags{png}
+cono los campos dentro de currencies pueden cambiar, es necesario crearlos como [key:string] para poder usarlos mas adelante.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Componentes:
+ListaPaises: Se le introduce un array de tipo Pais y crea una instancia del componente LastaPaisesElem para cada elemento con el pais como entrada.
+ListaPaisesElem: Coge un Pais como entrada y devuelve el componente con el nombre comun, la bandera y poblacion, enveulto en un link a otra pagina para poder ver el elemento.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+PaisCard: Se le introducen un pais como entrada y devuelve el componente con los campos pedidos ( nombre oficial, capital, subregión, lenguajes y monedas), para poder leer lenguajes y monedas, es necesario usar un ObjectKeys y un map del resultado dado que los campos pueden cambiar de nombre.
 
-## Learn More
+Paginas:
+Pagina '/'  Como se requiere una lista inicial y que se actualiza cada vez que se haga una busqueda, se usa un useEfect con un estado ligado al valor del input (se cambia el estado al dar al boton de Buscar). La primera vez que se ejecuta, el estado de la lista está a null y se usa para obtener la primera lista usando la busqueda de la api filtrada, después se usa busqueda por nombre. Tiene una instancia del componente ListaPaises.
+Pagina '/country/[name]' Hace una busqueda por nombre del pais usando [name] como parametro, y le pasa el resultado a una instancia del componente PaisCard.
 
-To learn more about Next.js, take a look at the following resources:
+Estilos:
+Pagina Principal: 
+Como solo va a salir la lista ademas del input y el boton, he decidido que estén centrados en la pagina, he separado los elementos de la lista, las he dado borde y color que cambian cuando pasas el raton por encima.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pagina Secundaria:
+He cambiado los estilos de h4, h3, y h2 para reducir el espaciado entre cada uno, también he centrado el componente y le he dado margen superior para relativo a la ventana para qué esté más centrado

@@ -58,7 +58,7 @@ const Page = () => {
           onClick={()=>{
           setFinalName(name)
           }}
-        >Search</button>
+        >Buscar</button>
       </div>
         {paises && <ListaPaises paises={paises}/>}
         {loading && <h1>LOADING...</h1>}
