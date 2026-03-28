@@ -20,7 +20,7 @@ export const PaisCard=(params: {pais: Pais})=>{
       {pais && (<>
         <h2>Monedas:</h2> {
           Object.keys(pais.currencies).map(key =>{
-          return (<h3 key={key}>Nombre: {pais.currencies[key as any].name}, Simbolo: {pais.currencies[key as any].symbol}</h3> )
+          return (<h3 key={key}>Nombre: {pais.currencies[key as any].name}, {pais.currencies[key as any].symbol}</h3> )
               })
           }
         </>)
